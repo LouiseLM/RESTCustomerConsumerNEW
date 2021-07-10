@@ -68,7 +68,19 @@ namespace RestCustomerConsumer2.MenuHandler
 
         private static void menu2()
         {
-            return;
+            try
+            {
+                Console.WriteLine("Enter the ID of the customer you're looking for. See exception if not found.");
+                string idGet = Console.ReadLine();
+                int id = int.Parse(idGet);
+                Customer customer = CustomerController.CustomersController.GetCustomerInfoAsync(id).Result;
+                Console.WriteLine(customer.ToString());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                Console.WriteLine(ex.Message);
+            }
         }
 
         private static void menu3()
