@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using RestCustomerConsumer2.MenuHandler;
 
 namespace RestCustomerConsumer2
 {
@@ -14,7 +15,7 @@ namespace RestCustomerConsumer2
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            Menu.MainMenu();
         }
 
         //public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>

@@ -13,7 +13,7 @@ namespace RestCustomerConsumer2.Controllers
 {
     public class CustomerController
     {
-        private static string CustomersUri = "https://localhost:44334/api/customer/";
+        private static string CustomersUri = "https://localhost:5001/api/customer/";
         
         public class CustomersController : ControllerBase
         {

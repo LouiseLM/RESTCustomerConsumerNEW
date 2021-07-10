@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RestCustomerConsumer2.Controllers;
+using RestCustomerConsumer2.Model;
 
 namespace RestCustomerConsumer2.MenuHandler
 {
@@ -30,7 +32,7 @@ namespace RestCustomerConsumer2.MenuHandler
                 {
                     int choice = Convert.ToInt32(key.KeyChar) - 48;
 
-                    Console.WriteLine("Choice: " + choice);
+                    //Console.WriteLine("Choice: " + choice);
                     switch (choice)
                     {
                         case 1:
@@ -45,18 +47,48 @@ namespace RestCustomerConsumer2.MenuHandler
                             menu5(); break;
                         case 6:
                             menu6(); break;
-                        case 9:
+                        case 0:
                             status = false; break;
                         default:
-                            Cons
+                            Console.WriteLine("Must be a number between 0-6"); break;
                     }
-                
                 }
                 else
                 {
                     Console.WriteLine("You need to input a valid number");
                 }
             }
+        }
+        private static void menu1()
+        {
+            IList<Customer> allC = CustomerController.CustomersController.GetCustomersAsync().Result;
+            for (int i = 0; i < allC.Count; i++)
+                Console.WriteLine(allC[i].ToString());
+        }
+
+        private static void menu2()
+        {
+            return;
+        }
+
+        private static void menu3()
+        {
+            return;
+        }
+
+        private static void menu4()
+        {
+            return;
+        }
+
+        private static void menu5()
+        {
+            return;
+        }
+
+        private static void menu6()
+        {
+            return;
         }
     }
 }
