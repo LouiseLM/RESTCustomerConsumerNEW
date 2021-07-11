@@ -31,8 +31,7 @@ namespace RestCustomerConsumer2.MenuHandler
                 if (char.IsDigit(key.KeyChar))
                 {
                     int choice = Convert.ToInt32(key.KeyChar) - 48;
-
-                    //Console.WriteLine("Choice: " + choice);
+                    
                     switch (choice)
                     {
                         case 1:
@@ -85,22 +84,63 @@ namespace RestCustomerConsumer2.MenuHandler
 
         private static void menu3()
         {
-            return;
+            try
+            {
+                Console.WriteLine("Enter the ID of the customer you want to update. See exception if not found.");
+                string idPut = Console.ReadLine();
+                int id = int.Parse(idPut);
+                Customer customer = CustomerController.CustomersController.GetCustomerInfoAsync(id).Result;
+                Console.WriteLine("The chosen customer to be updated is: " + customer.ToString());
+
+                Console.WriteLine("Customer's First Name: ");
+                customer.FirstName = Console.ReadLine();
+                Console.WriteLine("Customer's Last Name: ");
+                customer.LastName = Console.ReadLine();
+                Console.WriteLine("Customer's Year of Registration: ");
+                string yearStr = Console.ReadLine();
+                customer.YearOfReg = Int32.Parse(yearStr);
+
+                Customer customerNew = CustomerController.CustomersController.UpdateCustomerAsync(customer, id).Result;
+                Console.WriteLine("Customer has been updated.");
+                Console.WriteLine(customerNew.ToString());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                Console.WriteLine(ex.Message);
+            }
         }
 
         private static void menu4()
         {
-            return;
+            Console.WriteLine("Insert data for new cusomer to be added:");
+            Console.WriteLine("Customer's First Name: ");
+            string first = Console.ReadLine();
+            Console.WriteLine("Customer's Last Name: ");
+            string last = Console.ReadLine();
+            Console.WriteLine("Customer's Year of Registration: ");
+            string yearStr = Console.ReadLine();
+            int year = Int32.Parse(yearStr);
+
+            Customer newCustomer = new Customer(first, last, year);
+            Customer customer = CustomerController.CustomersController.PostNewCustomerAsync(newCustomer).Result;
+            Console.WriteLine("New customer has been added");
+            Console.WriteLine(customer.ToString());
+
         }
 
         private static void menu5()
         {
-            return;
+            Console.WriteLine("Enter ID of the customer top be deleted:");
+            string idDel = Console.ReadLine();
+            int id = int.Parse(idDel);
+            Customer customer = CustomerController.CustomersController.DeleteOneCustomerAsync(id).Result;
+            if (customer == null) Console.WriteLine("Customer has been successfuly deleted.");
         }
 
         private static void menu6()
         {
-            return;
+            Console.WriteLine("?");
         }
     }
 }
